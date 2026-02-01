@@ -27,7 +27,18 @@
   // ========================================
   const params = new URLSearchParams(location.search);
   const mode = params.get('mode') === 'test' ? 'test' : 'prod';
+  const isTest = mode === 'test';
   const t0 = performance.now();
+
+  // ========================================
+  // 隠しリセットURL（?reset=1）
+  // ========================================
+  if (params.get('reset') === '1') {
+    localStorage.removeItem('mentorpoll_answered');
+    params.delete('reset');
+    const qs = params.toString();
+    history.replaceState({}, '', location.pathname + (qs ? '?' + qs : ''));
+  }
 
   // ========================================
   // DOM Elements
@@ -68,9 +79,12 @@
   // ========================================
   // 既回答チェック（本番のみ）
   // ========================================
-  if (mode === 'prod' && localStorage.getItem('mentorpoll_answered') === 'true') {
+  if (!isTest && localStorage.getItem('mentorpoll_answered') === 'true') {
     surveyForm.style.display = 'none';
     thankYou.style.display = 'block';
+    // 「もう一度回答する」リンクを表示
+    const retryLink = document.getElementById('retry-link');
+    if (retryLink) retryLink.style.display = 'block';
     return;
   }
 
@@ -181,8 +195,13 @@
         thankYou.classList.add('fade-in');
 
         // テストモードの場合は注記表示
-        if (mode === 'test' && thankYouNote) {
+        if (isTest && thankYouNote) {
           thankYouNote.style.display = 'block';
+        }
+        // 本番モードの場合は「もう一度回答する」リンクを表示
+        if (!isTest) {
+          const retryLink = document.getElementById('retry-link');
+          if (retryLink) retryLink.style.display = 'block';
         }
       } else {
         throw new Error(result.error || 'Unknown error');

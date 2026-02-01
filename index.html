@@ -129,6 +129,11 @@
             <p id="thank-you-note" class="hint test-note" style="display: none;">
                 ※テスト用シートに保存しました（本番集計には入りません）
             </p>
+            <!-- 本番モード用：もう一度回答するリンク -->
+            <p id="retry-link" class="retry-link" style="display: none;">
+                <a href="#"
+                    onclick="localStorage.removeItem('mentorpoll_answered'); location.reload(); return false;">もう一度回答する</a>
+            </p>
         </div>
     </main>
 

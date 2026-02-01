@@ -419,6 +419,22 @@ textarea::placeholder {
   color: var(--muted);
 }
 
+/* Retry link (prod mode only) */
+.retry-link {
+  margin-top: 24px;
+  font-size: var(--small);
+}
+
+.retry-link a {
+  color: var(--muted2);
+  text-decoration: underline;
+  transition: color .15s ease;
+}
+
+.retry-link a:hover {
+  color: var(--accent);
+}
+
 /* 文字数カウント */
 #char-count {
   text-align: right;
