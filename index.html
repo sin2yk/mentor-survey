@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>メンターアンケート | G's Academy</title>
+    <meta name="description" content="G's Academy メンター候補向けの短時間アンケート">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main class="container stack" id="app">
+        <!-- Test Mode Banner -->
+        <div id="test-banner" class="test-banner" style="display: none;">
+            <strong>TEST MODE（G's事務局・チューター確認用）</strong><br>
+            <span class="hint">メンター名選択は無効化されています。<br>送信内容はテスト用シートに保存され、本番集計には入りません。</span>
+        </div>
+
+        <!-- Survey Form -->
+        <div id="survey-form">
+            <!-- Header Card -->
+            <header class="card">
+                <h1 class="header-title">メンターアンケート</h1>
+                <p class="header-body">
+                    初めまして。吉川慎二（シンジ／<span class="header-code">T_DEV30_TUE_07</span>）と申します。<br>
+                    個人のワイン体験・感動・記憶を保管するWebサービスを卒業制作として開発しています。<br>
+                    僭越ながら質問させてください。お忙しいメンターの先輩方のご事情も拝察し、<br>
+                    お互いの時間を有効に使うための超短時間アンケートとご理解いただければ幸いです。<br>
+                    <span class="hint">（所要時間：30秒〜1分）</span>
+                </p>
+            </header>
+
+            <!-- Questions Card -->
+            <section class="card stack">
+                <!-- Q0: Name Selection -->
+                <div class="field">
+                    <label class="label">あなたのお名前を選択してください<br><span class="hint">（G's MENTORプロフィール テーブルビュー記載順
+                            敬称略）</span></label>
+                    <div class="options options-2col" id="mentor-options">
+                        <label class="option"><input type="radio" name="mentor" value="中村 ひろき" required><span>中村
+                                ひろき</span></label>
+                        <label class="option"><input type="radio" name="mentor" value="杉本 至"><span>杉本 至</span></label>
+                        <label class="option"><input type="radio" name="mentor" value="紫竹 佑騎"><span>紫竹 佑騎</span></label>
+                        <label class="option"><input type="radio" name="mentor" value="小島 淳"><span>小島 淳</span></label>
+                        <label class="option"><input type="radio" name="mentor" value="大谷 祐司"><span>大谷 祐司</span></label>
+                        <label class="option"><input type="radio" name="mentor" value="山崎 拓也"><span>山崎 拓也</span></label>
+                        <label class="option"><input type="radio" name="mentor" value="茂木 健一"><span>茂木 健一</span></label>
+                        <label class="option"><input type="radio" name="mentor" value="増渕 大輔"><span>増渕 大輔</span></label>
+                        <label class="option"><input type="radio" name="mentor" value="本多 太一"><span>本多 太一</span></label>
+                        <label class="option"><input type="radio" name="mentor" value="深野 彌"><span>深野 彌</span></label>
+                        <label class="option"><input type="radio" name="mentor" value="平下 公洋"><span>平下 公洋</span></label>
+                        <label class="option"><input type="radio" name="mentor" value="中農 稔（ねろ）"><span>中農
+                                稔（ねろ）</span></label>
+                        <label class="option"><input type="radio" name="mentor" value="長峯 広雅"><span>長峯 広雅</span></label>
+                        <label class="option"><input type="radio" name="mentor" value="佐野 健"><span>佐野 健</span></label>
+                        <label class="option"><input type="radio" name="mentor" value="近藤 祥子"><span>近藤 祥子</span></label>
+                        <label class="option"><input type="radio" name="mentor" value="小菅 達矢"><span>小菅 達矢</span></label>
+                        <label class="option"><input type="radio" name="mentor" value="河畠 輝"><span>河畠 輝</span></label>
+                        <label class="option"><input type="radio" name="mentor" value="藤川 真一（えふしん）"><span>藤川
+                                真一（えふしん）</span></label>
+                        <label class="option"><input type="radio" name="mentor" value="山本 憲"><span>山本 憲</span></label>
+                        <label class="option"><input type="radio" name="mentor" value="和田 康宏"><span>和田 康宏</span></label>
+                        <label class="option"><input type="radio" name="mentor" value="森 豪基（もりご）"><span>森
+                                豪基（もりご）</span></label>
+                        <label class="option"><input type="radio" name="mentor" value="橋本 正德"><span>橋本 正德</span></label>
+                        <label class="option"><input type="radio" name="mentor" value="大村 幸寛"><span>大村 幸寛</span></label>
+                        <label class="option"><input type="radio" name="mentor" value="奥屋 孝太郎"><span>奥屋
+                                孝太郎</span></label>
+                        <label class="option"><input type="radio" name="mentor" value="小川 博教"><span>小川 博教</span></label>
+                        <!-- Test Mode: Pre-selected Test Sender at end of list -->
+                        <label id="test-sender-option" class="option test-selected" style="display: none;">
+                            <input type="radio" name="mentor" value="(TEST) G's Office" checked>
+                            <span>G's事務局テスト用</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <!-- Q1: Wine Preference -->
+                <div class="field">
+                    <label class="label">Q1. ワインはお好きですか？</label>
+                    <div class="options" id="wine-options">
+                        <label class="option"><input type="radio" name="wine" value="A" required><span>A. 好き
+                                ❤️</span></label>
+                        <label class="option"><input type="radio" name="wine" value="B"><span>B.
+                                たまに飲む／付き合い程度</span></label>
+                        <label class="option"><input type="radio" name="wine" value="C"><span>C.
+                                ほぼ飲まない（詳しくない）</span></label>
+                    </div>
+                </div>
+
+                <!-- Q2: Free Text (Conditional) -->
+                <div class="field fade-in" id="q2-section" style="display: none;">
+                    <div class="divider"></div>
+                    <label class="label">Q2. ご自身の「ワインとの距離感」を、3行以内で教えてください。</label>
+                    <p class="hint">
+                        直感でOKです<br>
+                        最近の具体的なシーン（誰と／どこで／料理など）が1つ入ると助かります<br>
+                        銘柄名や専門知識は不要です
+                    </p>
+                    <textarea id="wine-story" maxlength="300" placeholder="3行以内でお書きください..." rows="4"></textarea>
+                    <div class="hint" id="char-count">残り <span id="remaining">300</span> 文字</div>
+
+                    <div class="examples">
+                        <strong>例①</strong><br>
+                        家で料理しながら飲む時間が一番好き。<br>
+                        詳しいことは分からないけれど、「これ美味しいな」という記憶はよく残っている。<br><br>
+                        <strong>例②</strong><br>
+                        旅先や会食で飲んだワインの、場の空気や一緒にいた人の印象が残りやすい。<br>
+                        味そのものより、その時間ごと覚えているタイプ。
+                    </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <!-- Submit Button -->
+                <div class="actions">
+                    <button type="button" class="btn" id="submit-btn" disabled>送信する</button>
+                </div>
+            </section>
+        </div>
+
+        <!-- Thank You Screen -->
+        <div id="thank-you" class="card" style="display: none;">
+            <h2 class="header-title">ご協力ありがとうございました。</h2>
+            <p class="header-body">これでアンケートは完了です。</p>
+            <p id="thank-you-note" class="hint test-note" style="display: none;">
+                ※テスト用シートに保存しました（本番集計には入りません）
+            </p>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

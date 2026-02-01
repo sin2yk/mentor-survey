@@ -1,0 +1,12 @@
+# Dependencies
+node_modules/
+
+# GAS code (for reference only, not needed for frontend)
+gas_code.js
+
+# Backup files
+*.bak
+
+# OS files
+.DS_Store
+Thumbs.db
